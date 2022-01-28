@@ -1,0 +1,48 @@
+write a SQL query to find those employees who get higher salary than the employee whose ID is 163. Return first name, last name.
+
+select first_name, last_name
+from employees
+where salary > (select salary from employees where employee_id = 163)
+
+-------------------------------------------
+Display the name, salary, department id, job id for those employees who works in the same designation as the employee works whose id is 169
+
+select first_name, salary, department_id, job_id
+from employees
+where job_id = (select job_id from employees where employee_id = 169)
+
+----------------------------------------------------
+Display the name, salary, department id for those employees who earn such amount of salary which is the smallest salary of any of the departments
+
+select first_name, last_name, salary, department_id
+from employees
+where salary in (select min(salary) from employees group by department_id)
+
+---------------------------------------------------------
+Display the employee id, employee name for all employees who earn more than the average salary
+
+select employee_id, first_name, last_name
+from employees
+where salary > (select avg(salary) from employees)
+
+----------------------------------------
+Display the employee name, employee id and salary of all employees who report to John
+
+select first_name, last_name, employee_id, salary
+from employees
+where manager_id = any (select employee_id from employees where first_name = 'John')
+
+-----------------------------------------------------
+SQL query to find all those employees who work in the HR department. Return department ID, name (first name), job ID and department name.
+
+select e.department_id, e.first_name, e.last_name, e.job_id, d.department_name
+from employees e, departments d
+where e.department_id = d.department_id and d.department_name = 'Human Resources'
+
+
+-------------------------------------------
+write a SQL query to find those employees whose ID matches any of the number 134, 159 and 183. Return all the fields.'
+
+select *  
+from employees 
+where employee_id in (134,159,183)
