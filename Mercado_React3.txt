@@ -1,0 +1,176 @@
+1.)Create a sample component to demonstrate react bootstrap components.
+
+
+----- APP COMPONENT
+
+import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import BSTable from "./Mercado_React3/BSTable"
+import Container from "react-bootstrap/Container";
+import SampleComponent from "./Mercado_React3/SampleComponent";
+
+class App extends Component {
+  render() {
+        return(
+          <Container fluid="lg">
+            <SampleComponent />
+          </Container>
+        );
+    }
+  }
+
+
+export default App;
+
+
+
+
+----- SAMPLE COMPONENT
+import { Component } from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Toast from 'react-bootstrap/Toast';
+
+export default class SampleComponent extends Component {
+  render() {
+    return (
+      <div>
+        <Row className="mb-5">
+          <Col>This is how </Col>
+          <Col>Column works in Bootstrap!</Col>
+          <Col>I'm the Thrid Column in Auto mode</Col>
+        </Row >
+        <Row className="mt-5"> THIS IS EXAMPLE OF BUTTONS IN BOOTSTRAP</Row>
+        <Row className="mb-5">
+          <Col>
+            <Button variant="primary">Primary</Button>{" "}
+          </Col>
+          <Col>
+            <Button variant="secondary">Secondary</Button>{" "}
+          </Col>
+          <Col>
+            <Button variant="success">Success</Button>{" "}
+          </Col>
+          <Col>
+            <Button variant="warning">Warning</Button>{" "}
+          </Col>
+          <Col>
+            <Button variant="danger">Danger</Button>{" "}
+          </Col>
+          <Col>
+            <Button variant="info">Info</Button>{" "}
+          </Col>
+          <Col>
+            <Button variant="light">Light</Button>{" "}
+          </Col>
+          <Col>
+            <Button variant="dark">Dark</Button>{" "}
+          </Col>
+          <Col>
+            <Button variant="link">Link</Button>
+          </Col>
+        </Row >
+        <Row className="mt-5">
+          <Toast>
+            <Toast.Header>
+              <img
+                src="holder.js/20x20?text=%20"
+                className="rounded me-2"
+                alt=""
+              />
+              <strong className="me-auto">Bootstrap</strong>
+              <small>11 mins ago</small>
+            </Toast.Header>
+            <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+          </Toast>
+        </Row>
+      </div>
+    );
+  }
+}
+
+
+2.)Complete the below activity to apply bootstrap on a table 
+
+------ APP COMPONENT
+
+import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import BSTable from "./Mercado_React3/BSTable"
+import Container from "react-bootstrap/Container";
+
+class App extends Component {
+  render() {
+        return(
+          <Container fluid="lg">
+            <BSTable />
+          </Container>
+        );
+    }
+  }
+
+
+export default App;
+
+
+
+
+---- BSTABLE COMPONENT
+
+import React from "react";
+
+import "bootstrap/dist/css/bootstrap.css";
+
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+
+import BootstrapTable from "react-bootstrap-table-next";
+
+const products = [
+  { id: 0, name: "Item name 0", price: 2100 },
+
+  { id: 1, name: "Item name 1", price: 2101 },
+
+  { id: 2, name: "Item name 2", price: 2102 },
+
+  { id: 3, name: "Item name 3", price: 2103 },
+];
+
+const columns = [
+  {
+    dataField: "id",
+
+    text: "Product ID",
+
+    sort: true,
+  },
+
+  {
+    dataField: "name",
+
+    text: "Product Name",
+
+    sort: true,
+  },
+
+  {
+    dataField: "price",
+
+    text: "Product Price",
+  },
+];
+
+export default function BSTable() {
+  return (
+    <div className="App">
+      <BootstrapTable
+        bootstrap4
+        keyField="id"
+        data={products}
+        columns={columns}
+      />
+    </div>
+  );
+}
+
+

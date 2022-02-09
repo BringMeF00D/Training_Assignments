@@ -1,0 +1,360 @@
+React Assignment:2 
+
+ 
+
+1.) Apply the concept of conditional rendering,to display the Login Component if the user is not logged in, or display the NumberList component if he or she is logged in. 
+
+
+------- APP COMPONENT
+
+
+import React, { Component } from'react';
+import "bootstrap/dist/css/bootstrap.css";
+import Login from './Mercado_React2/Question1/Login';
+import User from './Mercado_React2/Question1/User';
+
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={user:'',password:'',loggedin:false,error:''};
+  }
+
+
+  render(){
+    if(this.state.loggedin){
+      return(
+        <div>
+            <User />
+            <button onClick={()=>this.setState({loggedin:false})}>Logout</button>
+        </div>
+      );
+    }else{
+      return(
+        <div>
+          <Login username={this.state.user} password={this.state.password}
+           error={this.state.error}
+           handleUsername={(event)=>this.setState({user:event.target.value})}
+           handlePassword={(event)=>this.setState({password:event.target.value})}
+           submit={()=>{
+             if(this.state.user==="user" && this.state.password==="pass" ){
+               this.setState({loggedin:true});
+             }
+             else{
+               this.setState({error:"Not a valid user"});
+             }
+           }} />
+        </div>
+      );
+    }
+  }
+}
+
+export default App;
+
+
+
+-------------- LOGIN COMPONENT
+
+
+import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+const Login = (props) => {
+  return (
+    <div>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col xs={6} md={4}></Col>
+          <Col xs={6} md={4}>
+            <Card>
+              <Card.Body>
+                <Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter email"
+                      value={props.username}
+                      onChange={props.handleUsername}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Password"
+                      value={props.password}
+                      onChange={props.handlePassword}
+                    />
+                  </Form.Group>
+                  <Button
+                    variant="primary"
+                    type="button"
+                    onClick={props.submit}
+                  >
+                    Submit
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={6} md={4}></Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
+export default Login;
+
+
+-------- USER COMPONENT OR WHEN LOGIN IS TRUE
+
+import React from "react";
+import ListItem from "./ListItem";
+
+export default function User(props) {
+  var numbers = [1, 2, 3, 4, 5];
+  return (
+    <div>
+        <ul>
+          {numbers.map((number) => (
+            <ListItem key={number.toString()} value={number} />
+          ))}
+        </ul>
+    </div>
+  );
+}
+
+
+------- LISTITEM COMPONENT
+
+export default function ListItem(props) {
+    return <li>{props.value}</li>;
+  }
+
+
+
+
+
+2.) Create a UI for the below State data. Create Component named  TableRow that accepts state data as the props and renders each item as as a Table Row. 
+
+
+
+------ APP COMPONENT
+
+import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import Login from "./Mercado_React2/Question2/Login";
+import Employee from "./Mercado_React2/Question2/Employee";
+import Container from "react-bootstrap/Container";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: "",
+      password: "",
+      loggedin: false,
+      error: "",
+    };
+  }
+
+  render() {
+    if (this.state.loggedin) {
+      return (
+        <div>
+          <Container fluid="xl">
+            <Employee />
+            <button onClick={() => this.setState({ loggedin: false })}>
+              Logout
+            </button>
+          </Container>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Login
+            username={this.state.user}
+            password={this.state.password}
+            error={this.state.error}
+            handleUsername={(event) =>
+              this.setState({ user: event.target.value })
+            }
+            handlePassword={(event) =>
+              this.setState({ password: event.target.value })
+            }
+            submit={() => {
+              if (
+                this.state.user === "user" &&
+                this.state.password === "pass"
+              ) {
+                this.setState({ loggedin: true });
+              } else {
+                this.setState({ error: "Not a Valid User" });
+              }
+            }}
+          />
+        </div>
+      );
+    }
+  }
+}
+
+export default App;
+
+
+
+
+
+----- LOGIN COMPONENT
+
+
+import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+const Login = (props) => {
+  return (
+    <div>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col xs={6} md={4}></Col>
+          <Col xs={6} md={4}>
+            <Card>
+              <Card.Body>
+                <Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter email"
+                      value={props.username}
+                      onChange={props.handleUsername}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Password"
+                      value={props.password}
+                      onChange={props.handlePassword}
+                    />
+                  </Form.Group>
+                  <Button
+                    variant="primary"
+                    type="button"
+                    onClick={props.submit}
+                  >
+                    Submit
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={6} md={4}></Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
+export default Login;
+
+
+
+
+------ EMPLOYEE COMPONENT 
+
+
+import { Component } from "react";
+import TableRow from "./TableRow";
+import Table from "react-bootstrap/Table";
+import Container from "react-bootstrap/Container";
+
+export default class User extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {
+          id: 1,
+
+          name: "Kafra",
+
+          age: "18",
+        },
+
+        {
+          id: 2,
+
+          name: "Ariel",
+
+          age: "20",
+        },
+
+        {
+          id: 3,
+
+          name: "V",
+
+          age: "23",
+        },
+      ],
+    };
+  }
+  render() {
+    return (
+      <div>
+        <h2>Employee data goes here</h2>
+        <Table responsive striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.data.map((emp, i) => (
+              <TableRow key={i} mydata={emp} />
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    );
+  }
+}
+
+
+------ TABLE ROW COMPONENT
+
+import React from "react";
+
+export default class TableRow extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+     
+        <tr>
+          <td>{this.props.mydata.id}</td>
+          <td>{this.props.mydata.name}</td>
+          <td>{this.props.mydata.age}</td>
+        </tr>
+      
+    );
+  }
+}
+
+

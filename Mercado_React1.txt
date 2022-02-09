@@ -1,0 +1,125 @@
+ 
+
+React Assignment:1 
+
+1.)Install NodeJs, Visual studio code 
+
+2.)create a Welcome component  to greet the user using a javascript function, 
+
+with a property called as name. Apply some css styling.Use the component in App  component. 
+
+*** WELCOME COMPONENT
+
+import React, { Component } from 'react';   
+  
+export default class Welcome extends Component {  
+constructor(props){
+    super(props);
+}
+  render() {  
+    return (  
+      <div>  
+           <h1 style={{color: "Red"}}> WELCOME TO MY HUMBLE PAGE {this.props.name}!</h1> 
+      </div>  
+    );  
+  }  
+} 
+
+
+*** APP COMPONENT
+
+import logo from './logo.svg';
+import './App.css';
+import Welcome from './Welcome'
+
+function App() {
+  return (
+    <div>
+        <Welcome name = "Adams" />
+    </div>
+  );
+}
+
+export default App;
+
+
+3.)Create a Component to add two numbers. 
+
+
+------ AddTwoNumbers COMPONENT
+
+import { Component } from "react/cjs/react.development";
+
+export default class AddTwoNumbers extends Component{
+    constructor(props){
+        super(props);
+        this.state = { firstNumber : 4, secondNumber : 20};
+    }
+    render(){
+        return(
+            <div>
+                <p> Adding 1ST and 2ND No.  = { this.state.firstNumber + this.state.secondNumber }</p>
+            </div>
+        );
+    }
+}
+
+
+
+4.)Modify the card component to add a props age and perform the validation,to check it’s a number. 
+
+
+----- CARD COMPONENT
+
+import { Component } from "react/cjs/react.development";
+import PropTypes from 'prop-types';
+
+export default class Card extends Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        return(
+            <div>
+                <h1> Hello I am { this.props.firstName + ' ' + this.props.lastName } and I'm { this.props.age } years old. </h1>
+            </div>
+        );
+    }
+}  
+  Card.propTypes = {
+        firstName: PropTypes.string.isRequired,
+        age : PropTypes.number
+    }
+
+
+---- APP COMPONENT
+
+import './App.css';
+import Card from './Card';
+
+function App() {
+  return (
+    <div>
+
+        <Card firstName ='John Adams' lastName = 'Mercado'  age = '26'/>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+5.)What is Virtual DOM in ReactJS 
+
+A virtual DOM (VDOM) is a programming concept in which a library like ReactDOM keeps a "virtual" representation of a user interface in memory 
+and syncs it with the "real" DOM. This process is called reconciliation.
+
+It will re-render the needed user interface for example the a section of a page while maintaining the page. It is use to create a SPA(Single Page Application)
+with the help of components so that the page or real DOM don't need to refresh every time theres a request.
+
+
+ 
+
+ 
